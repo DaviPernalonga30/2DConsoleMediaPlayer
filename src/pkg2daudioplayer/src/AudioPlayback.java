@@ -25,12 +25,13 @@ public class AudioPlayback {
     private String filepath;
     private AudioInputStream audInput;
     private Clip clip;
-    private Line line;
-    private Mixer mixer;
-    private SourceDataLine sourcedateline;
-    private ArrayList queueList;
-    private ArrayList playList;
     private ArquivesManagement arqMan = new ArquivesManagement();
+    
+    public void StartSession(String filepath){
+        this.filepath = filepath;
+        //implementar essa função depois para nao abrir o player e ele começar a tocar
+        //direto.
+    }
         
     public void ChangeSong(String filepath) throws LineUnavailableException, IOException, UnsupportedAudioFileException{
         this.filepath = filepath;
@@ -90,6 +91,7 @@ public class AudioPlayback {
         
     }
     
+    //Implementar metodo.
     public void JumpToTime(long timeMiliSeconds){
         
     }
@@ -101,7 +103,7 @@ public class AudioPlayback {
         int i = 1;
         while(i!=0){
             System.out.println("============================================");
-            System.out.println("1. Criar playlist do zero");
+            System.out.println("1. Criar playlist");
             System.out.println("2. Editar playlist existente");
             System.out.println("3. Deletar playlist existente");
             System.out.println("============================================");
@@ -114,19 +116,13 @@ public class AudioPlayback {
                     musicPath = inputPath.nextLine();
                     CreatePlaylist(name, musicPath);
                 case 2:
-                    
-                    EditPlayList();
+                    EditPlaylist();
                 case 3:
-                    
                     DeletePlaylist();
-            }
-           
-            
+            }  
         //Mudar o nome da função e fazer as devidas alterações.
         }
-        
-        
-       
+    
     }
     
      private void CreatePlaylist(String name, String path) {
@@ -137,8 +133,9 @@ public class AudioPlayback {
          arqMan.SavePlayList(playlist);
        
     }
-
-    private void EditPlayList() {
+     
+     //Implementar metodos.
+    private void EditPlaylist() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -146,19 +143,65 @@ public class AudioPlayback {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
+    private void LoadPlaylist(){
+        
+    }
+    
+    private void MusicDirectoryManagement() {
+        Scanner inputPath = new Scanner(System.in);
+        String musicPath;
+        int i = 1;
+        while(i!=0){
+            System.out.println("============================================");
+            System.out.println("1. Adicionar Diretório");
+            
+            System.out.println("2. Deletar Diretório existente");
+            System.out.println("============================================");
+            i = inputPath.nextInt();
+            switch(i){
+                case 1:
+                    AddMusicDirectory();
+                case 2:
+                    DeleteMusicDirectory();
+            }  
+        //Mudar o nome da função e fazer as devidas alterações.
+        }
+        //Preciso implementar esse metódo.
+       
+    }
+    
+    
 
     private void AddMusicDirectory() {
+        //Metodo 100%
         String directoryPath;
-        System.out.println("Coloque aqui o endereço da musica.");
+        
         Scanner inputPath = new Scanner(System.in);
         MusicDirectoryClass msdir = new MusicDirectoryClass();
+        System.out.println("Coloque aqui o nome do diretório.");
         directoryPath = inputPath.nextLine();
+        msdir.setDir_name(directoryPath);
+        System.out.println("Coloque aqui o endereço do diretório.");
+        directoryPath = inputPath.nextLine();
+        msdir.setDir_dirAdress(directoryPath);
+        msdir.setDir_creationDate();
+        
         arqMan.SaveMusicDirectory(msdir);
         
     }
-
-    private void RemoveMusicDirectory() {
+    
+    
+    //Implementar metodos
+    private void DeleteMusicDirectory() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    private void LoadMusicDirectory() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private void ViewQueue(){
+        
     }
 
     private void AddMusicToQueue() {
@@ -172,6 +215,7 @@ public class AudioPlayback {
     private void Configs() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
     
     
     public void Choice(int i) throws LineUnavailableException, IOException, UnsupportedAudioFileException{
@@ -202,10 +246,12 @@ public class AudioPlayback {
                 ChangeSong(aux);
                 return;
             case 7:
+                LoadPlaylist();
                 //Load Playlist
                 
                 return;
             case 8:
+                LoadMusicDirectory();
                 //Load music Directory
             
                 return;
@@ -214,12 +260,11 @@ public class AudioPlayback {
                 //E necessitamos de configurações adicionais, tipo o management de playlist, filas
                 //e configurações como volume.
                 System.out.println("============================================");
-                System.out.println("1. Criar Playlist");
-                System.out.println("2. Adicionar Diretório de Música");
-                System.out.println("3. Remover Diretório de Música");
-                System.out.println("4. Adicionar música na fila");
-                System.out.println("5. Remover música da fila");
-                System.out.println("6. Configurações");
+                System.out.println("1. Gerenciar Playlists");
+                System.out.println("2. Gerenciar Diretório de Música");
+                System.out.println("3. Adicionar música na fila");
+                System.out.println("4. Remover música da fila");
+                System.out.println("5. Configurações");
                 System.out.println("0. Voltar");
                 System.out.println("============================================");
                 input = new Scanner(System.in);
@@ -237,28 +282,20 @@ public class AudioPlayback {
                 PlaylistManagement();
                 return;
             case 2:
-                AddMusicDirectory();
+                MusicDirectoryManagement();
                 return;
             case 3:
-                RemoveMusicDirectory();
-                return;
-            case 4:
                 AddMusicToQueue();
                 return;
-            case 5:
+            case 4:
                 RemoveMusicFromQueue();
                 return;
-            case 6:
-            
-                
+            case 5:                
                 Configs();
                 return;
                 
         }
         
     }
-
-   
-    
     
 }

@@ -4,6 +4,8 @@
  */
 package pkg2daudioplayer.src;
 
+import java.io.File;
+import java.io.FilenameFilter;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -27,15 +29,37 @@ public class MusicDirectoryClass implements Serializable{
     
     public void setDir_dirAdress(String path){
         this.dir_dirAdress = path;
+        this.setPl();
     }
     
     public void setDir_creationDate(){
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String aux = formatter.format(Calendar.getInstance());
+        String aux = formatter.format(Calendar.getInstance().getTime());
         this.dir_creationDate = aux;
     }
     
     public void setPl(){
+        this.pl = new PlayListClass();
+        File file = new File(this.dir_dirAdress);
+        FilenameFilter filter = new FilenameFilter(){
+            @Override
+            public boolean accept(File file, String string) {
+                String ends = string;
+                if(ends.endsWith(".wav")){
+                    return true;
+                }
+                else{
+                return false;
+                }
+            }
+           
+        };
+        
+        
+        File filesList[] = file.listFiles(filter);
+        for(File aux : filesList){
+            this.pl.setPl_mscAdress(aux.getAbsolutePath());
+        }
         this.pl.setPl_name(this.dir_name);
         this.pl.setPl_creationDate();
         //fazer um for que consiga pegar o caminho de todos 

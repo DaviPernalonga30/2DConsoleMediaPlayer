@@ -15,7 +15,7 @@ import java.util.Calendar;
  */
 public class PlayListClass implements Serializable{
     private String pl_name;
-    private ArrayList pl_mscAdress;
+    private ArrayList pl_mscAdress = new ArrayList();
     private String pl_creationDate;
     
     public void setPl_name(String name){
@@ -23,12 +23,13 @@ public class PlayListClass implements Serializable{
     }
     
     public void setPl_mscAdress(String path){
+        
         this.pl_mscAdress.add(path);
     }
     
     public void setPl_creationDate(){
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String aux = formatter.format(Calendar.getInstance());
+        String aux = formatter.format(Calendar.getInstance().getTime());
         this.pl_creationDate = aux;
     }
     

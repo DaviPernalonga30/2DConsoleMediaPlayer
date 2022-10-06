@@ -9,6 +9,7 @@ import java.util.Scanner;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import pkg2daudioplayer.src.AudioPlayback;
+import pkg2daudioplayer.src.MixersManagement;
 
 /**
  *
@@ -22,9 +23,11 @@ public class Main {
     public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         String filepath = "BlocoClimatizarBoscoDefar.wav";
         AudioPlayback aud = new AudioPlayback();
-        aud.ChangeSong(filepath);
+        MixersManagement mixMan = new MixersManagement();
+        //aud.ChangeSong(filepath);
         int i;
         
+        /*
         Scanner input = new Scanner(System.in);
         while(true){
             System.out.println("============================================");
@@ -45,12 +48,12 @@ public class Main {
                 break;
             }
             aud.Choice(i);
-            
+         
             
             
             
         }
-        
+          */
         // TODO code application logic here
     }
     
