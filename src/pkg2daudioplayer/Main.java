@@ -27,13 +27,18 @@ public class Main {
         
         Scanner input = new Scanner(System.in);
         while(true){
+            System.out.println("============================================");
             System.out.println("1. Iniciar Playback");
             System.out.println("2. Pausar Playback");
             System.out.println("3. Resumir Playback");
             System.out.println("4. Parar Playback");
-            System.out.println("5. Mudar Música");
-            System.out.println("6. Configurações");
+            System.out.println("5. Pular Para");
+            System.out.println("6. Mudar Musica");
+            System.out.println("7. Carregar Playlist");
+            System.out.println("8. Carregar Diretório");
+            System.out.println("9. Mais Opcões");
             System.out.println("0. Sair");
+            System.out.println("============================================");
             i = input.nextInt();
             if(i == 0){
                 aud.StopPlayback();
