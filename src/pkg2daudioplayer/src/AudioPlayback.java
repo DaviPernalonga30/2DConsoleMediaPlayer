@@ -11,10 +11,7 @@ import java.util.Scanner;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.Line;
 import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.Mixer;
-import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
@@ -41,6 +38,7 @@ public class AudioPlayback {
     }
     
     public void StartPlayback() throws UnsupportedAudioFileException, IOException, LineUnavailableException{
+        
         System.out.println("Tocando agora: "+new File(filepath).getName());
         
         this.audInput = AudioSystem.getAudioInputStream(new File(this.filepath).getAbsoluteFile());
@@ -91,12 +89,15 @@ public class AudioPlayback {
         
     }
     
+    
     //Implementar metodo.
     public void JumpToTime(long timeMiliSeconds){
         
     }
     
     
+    
+    // <editor-fold defaultstate="collapsed" desc="Playlist methods"> 
     private void PlaylistManagement() {
         Scanner inputPath = new Scanner(System.in);
         String musicPath;
@@ -134,6 +135,7 @@ public class AudioPlayback {
        
     }
      
+     
      //Implementar metodos.
     private void EditPlaylist() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -146,7 +148,9 @@ public class AudioPlayback {
     private void LoadPlaylist(){
         
     }
+    // </editor-fold> 
     
+    // <editor-fold defaultstate="collapsed" desc="Music Directory methods">
     private void MusicDirectoryManagement() {
         Scanner inputPath = new Scanner(System.in);
         String musicPath;
@@ -199,7 +203,10 @@ public class AudioPlayback {
     private void LoadMusicDirectory() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    // </editor-fold>
 
+    // <editor-fold defaultstate="collapsed" desc="Queue methods">
     private void ViewQueue(){
         
     }
@@ -211,13 +218,13 @@ public class AudioPlayback {
     private void RemoveMusicFromQueue() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    // </editor-fold>
 
     private void Configs() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-    
-    
+    // <editor-fold defaultstate="collapsed" desc="Choices (Menus) methods"> 
     public void Choice(int i) throws LineUnavailableException, IOException, UnsupportedAudioFileException{
         Scanner input;
         switch(i){
@@ -297,5 +304,14 @@ public class AudioPlayback {
         }
         
     }
+    // </editor-fold>
+    
+    private void VolumeControl(){
+        
+        
+    }
+    
+    
+    
     
 }

@@ -27,7 +27,7 @@ public class Main {
         //aud.ChangeSong(filepath);
         int i;
         
-        /*
+        
         Scanner input = new Scanner(System.in);
         while(true){
             System.out.println("============================================");
@@ -53,7 +53,7 @@ public class Main {
             
             
         }
-          */
+          
         // TODO code application logic here
     }
     
